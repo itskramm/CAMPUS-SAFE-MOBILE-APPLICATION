@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#050818">
 
-
+    <!-- Top Bar -->
     <RelativeLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
@@ -51,6 +51,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless" />
 
             <ImageView
+                android:id="@+id/btnSearch"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:src="@drawable/ic_search" />
@@ -70,7 +71,7 @@
             android:orientation="vertical"
             android:paddingBottom="20dp">
 
-
+            <!-- Welcome Section -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,6 +80,7 @@
                 android:paddingVertical="8dp">
 
                 <TextView
+                    android:id="@+id/tvWelcome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Welcome, John!"
@@ -87,6 +89,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvUserEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="John12@gmail.com"
@@ -94,7 +97,7 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-
+            <!-- Banner Image -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
@@ -131,7 +134,7 @@
                 </FrameLayout>
             </com.google.android.material.card.MaterialCardView>
 
-
+            <!-- Grid Menu -->
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -139,8 +142,9 @@
                 android:columnCount="2"
                 android:paddingHorizontal="12dp">
 
-
+                <!-- Report Hazards -->
                 <LinearLayout
+                    android:id="@+id/gridReportHazards"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
@@ -148,7 +152,9 @@
                     android:background="@drawable/grid_item_bg"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="40dp"
@@ -164,8 +170,9 @@
                         android:textSize="14sp" />
                 </LinearLayout>
 
-
+                <!-- Nearby Reports -->
                 <LinearLayout
+                    android:id="@+id/gridNearbyReports"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
@@ -173,7 +180,9 @@
                     android:background="@drawable/grid_item_bg"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="40dp"
@@ -192,6 +201,7 @@
 
                 <!-- My Reports -->
                 <LinearLayout
+                    android:id="@+id/gridMyReports"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
@@ -199,7 +209,9 @@
                     android:background="@drawable/grid_item_bg"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="40dp"
@@ -215,8 +227,9 @@
                         android:textSize="14sp" />
                 </LinearLayout>
 
-
+                <!-- Safety Tips -->
                 <LinearLayout
+                    android:id="@+id/gridSafetyTips"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
@@ -224,7 +237,9 @@
                     android:background="@drawable/grid_item_bg"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="40dp"
@@ -244,7 +259,7 @@
         </LinearLayout>
     </ScrollView>
 
-
+    <!-- Bottom Navigation -->
     <LinearLayout
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
@@ -258,11 +273,14 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
+            android:id="@+id/navHome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -276,11 +294,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/navReports"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -294,11 +315,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/navAdd"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
@@ -313,11 +337,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/navMaps"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -331,11 +358,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/navSettings"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
