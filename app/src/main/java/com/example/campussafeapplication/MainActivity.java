@@ -2,7 +2,6 @@ package com.example.campussafeapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,8 +26,37 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Grid Menu Navigation
-        // In activity_home.xml, we need to add IDs to the LinearLayouts in the GridLayout
-        // For now, I'll assume they might not have IDs and suggest adding them or finding by child index if needed.
-        // Better to update activity_home.xml with IDs first.
+        findViewById(R.id.gridReportHazards).setOnClickListener(v -> 
+            startActivity(new Intent(this, ReportHazardActivity.class)));
+
+        findViewById(R.id.gridNearbyReports).setOnClickListener(v -> 
+            startActivity(new Intent(this, NearbyReportsActivity.class)));
+
+        findViewById(R.id.gridMyReports).setOnClickListener(v -> 
+            startActivity(new Intent(this, MyReportsActivity.class)));
+
+        findViewById(R.id.gridSafetyTips).setOnClickListener(v -> 
+            startActivity(new Intent(this, SafetyTipsActivity.class)));
+
+        // Bottom Navigation
+        findViewById(R.id.navHome).setOnClickListener(v -> {
+            // Already on Home
+        });
+
+        findViewById(R.id.navReports).setOnClickListener(v -> 
+            startActivity(new Intent(this, MyReportsActivity.class)));
+
+        findViewById(R.id.navAdd).setOnClickListener(v -> 
+            startActivity(new Intent(this, ReportHazardActivity.class)));
+
+        findViewById(R.id.navMaps).setOnClickListener(v -> 
+            startActivity(new Intent(this, NearbyReportsActivity.class)));
+
+        findViewById(R.id.navSettings).setOnClickListener(v -> 
+            startActivity(new Intent(this, SettingsActivity.class)));
+            
+        // Search (could open nearby reports or a dedicated search)
+        findViewById(R.id.btnSearch).setOnClickListener(v -> 
+            startActivity(new Intent(this, NearbyReportsActivity.class)));
     }
 }

@@ -20,7 +20,10 @@
             android:layout_height="24dp"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_arrow_back"
-            android:contentDescription="Back" />
+            android:contentDescription="Back"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless" />
     </RelativeLayout>
 
     <ScrollView
@@ -68,6 +71,7 @@
 
             <!-- Input Fields -->
             <EditText
+                android:id="@+id/etProfileName"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="32dp"
@@ -78,6 +82,7 @@
                 android:textColorHint="@color/hint_gray" />
 
             <EditText
+                android:id="@+id/etProfileEmail"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="12dp"
@@ -89,6 +94,7 @@
                 android:textColorHint="@color/hint_gray" />
 
             <EditText
+                android:id="@+id/etProfilePassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="12dp"
@@ -100,6 +106,7 @@
                 android:textColorHint="@color/hint_gray" />
 
             <EditText
+                android:id="@+id/etProfilePhone"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="12dp"
@@ -111,6 +118,7 @@
                 android:textColorHint="@color/hint_gray" />
 
             <Button
+                android:id="@+id/btnSaveChanges"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"

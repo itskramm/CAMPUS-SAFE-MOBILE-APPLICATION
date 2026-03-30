@@ -5,21 +5,19 @@ import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CreateAccountActivity extends AppCompatActivity {
+public class BiometricActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_account);
+        setContentView(R.layout.activity_biometric);
         
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
-
-        findViewById(R.id.btnSignUp).setOnClickListener(v -> {
-            Toast.makeText(this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
+        findViewById(R.id.btnUseFingerprints).setOnClickListener(v -> {
+            Toast.makeText(this, "Biometric Authentication Successful", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, MainActivity.class));
             finish();
         });
 
-        findViewById(R.id.tvLoginLink).setOnClickListener(v -> {
+        findViewById(R.id.btnUseLogin).setOnClickListener(v -> {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });

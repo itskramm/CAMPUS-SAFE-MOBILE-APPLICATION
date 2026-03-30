@@ -31,6 +31,27 @@
             android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.CampusSafeApplication" />
+        <activity
+            android:name=".ReportHazardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NearbyReportsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyReportsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SafetyTipsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BiometricActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
