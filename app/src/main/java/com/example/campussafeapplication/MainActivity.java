@@ -14,49 +14,51 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        setupThemeToggle();
+
+        setupNavigation();
+    }
+
+    private void navigateTo(Class<?> destination) {
+        Intent intent = new Intent(this, destination);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+    }
+
+    private void setupNavigation() {
+        // this is for the grid menu
+        findViewById(R.id.gridReportHazards).setOnClickListener(v -> navigateTo(ReportHazardActivity.class));
+        findViewById(R.id.gridNearbyReports).setOnClickListener(v -> navigateTo(NearbyReportsActivity.class));
+        findViewById(R.id.gridMyReports).setOnClickListener(v -> navigateTo(MyReportsActivity.class));
+        findViewById(R.id.gridSafetyTips).setOnClickListener(v -> navigateTo(SafetyTipsActivity.class));
+
+        // bottom bar navigation
+        findViewById(R.id.navReports).setOnClickListener(v -> navigateTo(MyReportsActivity.class));
+        findViewById(R.id.navAdd).setOnClickListener(v -> navigateTo(ReportHazardActivity.class));
+        findViewById(R.id.navMaps).setOnClickListener(v -> navigateTo(NearbyReportsActivity.class));
+        findViewById(R.id.navSettings).setOnClickListener(v -> navigateTo(SettingsActivity.class));
+
+        //search button (subject for removal)
+        findViewById(R.id.btnSearch).setOnClickListener(v -> navigateTo(NearbyReportsActivity.class));
+
+        // home (bottom navigation bar)
+        findViewById(R.id.navHome).setOnClickListener(v -> {});
+    }
         // Theme Toggle
-        ImageView btnThemeToggle = findViewById(R.id.btnThemeToggle);
-        btnThemeToggle.setOnClickListener(v -> {
-            int currentMode = AppCompatDelegate.getDefaultNightMode();
-            if (currentMode == AppCompatDelegate.MODE_NIGHT_YES) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            }
+        private void setupThemeToggle() {
+        ImageView themeToggle = findViewById(R.id.btnThemeToggle);
+        themeToggle.setOnClickListener(v -> {
+            int newMode = (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+                    ? AppCompatDelegate.MODE_NIGHT_NO
+                    : AppCompatDelegate.MODE_NIGHT_YES;
+
+            AppCompatDelegate.setDefaultNightMode(newMode);
+
+            getSharedPreferences("CampusSafePrefs", MODE_PRIVATE)
+                    .edit()
+                    .putInt("themeMode", newMode)
+                    .apply();
         });
-
-        // Grid Menu Navigation
-        findViewById(R.id.gridReportHazards).setOnClickListener(v -> 
-            startActivity(new Intent(this, ReportHazardActivity.class)));
-
-        findViewById(R.id.gridNearbyReports).setOnClickListener(v -> 
-            startActivity(new Intent(this, NearbyReportsActivity.class)));
-
-        findViewById(R.id.gridMyReports).setOnClickListener(v -> 
-            startActivity(new Intent(this, MyReportsActivity.class)));
-
-        findViewById(R.id.gridSafetyTips).setOnClickListener(v -> 
-            startActivity(new Intent(this, SafetyTipsActivity.class)));
-
-        // Bottom Navigation
-        findViewById(R.id.navHome).setOnClickListener(v -> {
-            // Already on Home
-        });
-
-        findViewById(R.id.navReports).setOnClickListener(v -> 
-            startActivity(new Intent(this, MyReportsActivity.class)));
-
-        findViewById(R.id.navAdd).setOnClickListener(v -> 
-            startActivity(new Intent(this, ReportHazardActivity.class)));
-
-        findViewById(R.id.navMaps).setOnClickListener(v -> 
-            startActivity(new Intent(this, NearbyReportsActivity.class)));
-
-        findViewById(R.id.navSettings).setOnClickListener(v -> 
-            startActivity(new Intent(this, SettingsActivity.class)));
-            
-        // Search (could open nearby reports or a dedicated search)
-        findViewById(R.id.btnSearch).setOnClickListener(v -> 
-            startActivity(new Intent(this, NearbyReportsActivity.class)));
     }
 }
+

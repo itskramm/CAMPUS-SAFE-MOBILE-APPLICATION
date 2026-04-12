@@ -148,6 +148,7 @@
                 android:textSize="14sp" />
 
             <LinearLayout
+                android:id="@+id/layoutBuildingContainer"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
@@ -155,12 +156,16 @@
                 android:gravity="center_vertical"
                 android:paddingHorizontal="12dp">
 
-                <TextView
+                <Spinner
+                    android:id="@+id/spinnerBuilding"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Main Building"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:background="@android:color/transparent"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                    android:spinnerMode="dropdown"
+                    tools:listitem="@layout/spinner_item"/>
 
                 <ImageView
                     android:layout_width="20dp"
@@ -169,6 +174,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutFloorContainer"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
@@ -176,12 +182,16 @@
                 android:gravity="center_vertical"
                 android:paddingHorizontal="12dp">
 
-                <TextView
+                <Spinner
+                    android:id="@+id/spinnerFloor"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Floor 3"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:background="@android:color/transparent"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                    android:spinnerMode="dropdown"
+                    tools:listitem="@layout/spinner_item"/>
 
                 <ImageView
                     android:layout_width="20dp"
