@@ -15,6 +15,7 @@ constraintlayout = "2.2.1"
 biometric = "1.2.0-alpha05"
 playServicesLocation = "21.3.0"
 playServicesMaps = "19.0.0"
+playServicesAuth = "21.5.1"
 coroutines = "1.8.1"
 supabase = "2.6.1"
 ktor = "2.3.12"
@@ -43,6 +44,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-biometric = { group = "androidx.biometric", name = "biometric", version.ref = "biometric" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
+play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "playServicesAuth" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodel" }
 

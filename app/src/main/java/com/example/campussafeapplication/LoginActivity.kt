@@ -6,17 +6,33 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.campussafeapplication.utils.SessionManager
 import com.example.campussafeapplication.viewmodels.AuthViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     
     private lateinit var authViewModel: AuthViewModel
     private lateinit var sessionManager: SessionManager
+
+    private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+        try {
+            val account = task.getResult(ApiException::class.java)
+            account.idToken?.let { idToken ->
+                authViewModel.signInWithGoogle(idToken)
+            }
+        } catch (e: ApiException) {
+            Toast.makeText(this, "Google sign in failed: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
         val btnCreateAccount = findViewById<Button>(R.id.btnCreateAccount)
         val btnGoogle = findViewById<Button>(R.id.btnGoogle)
         val tvForgotPassword = findViewById<TextView>(R.id.tvForgotPassword)
-        val etUsername = findViewById<EditText>(R.id.etUsername) // Corrected ID from XML
+        val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         
         // Observe auth state
@@ -62,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
         }
         
         btnLogin.setOnClickListener {
-            val email = etUsername.text.toString().trim()
+            val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString().trim()
             
             if (email.isNotEmpty() && password.isNotEmpty()) {
@@ -77,7 +93,12 @@ class LoginActivity : AppCompatActivity() {
         }
         
         btnGoogle.setOnClickListener {
-            Toast.makeText(this, "Google Sign-In Clicked", Toast.LENGTH_SHORT).show()
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+            val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+            googleSignInLauncher.launch(mGoogleSignInClient.signInIntent)
         }
         
         tvForgotPassword.setOnClickListener {

@@ -35,14 +35,14 @@
         app:layout_constraintTop_toBottomOf="@+id/ivShield" />
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="32dp"
-        android:autofillHints="username"
+        android:autofillHints="emailAddress"
         android:background="@drawable/edit_text_rounded"
-        android:hint="Username"
-        android:inputType="textPersonName"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
         android:textColor="@color/white"
@@ -62,7 +62,7 @@
         android:paddingEnd="24dp"
         android:textColor="@color/white"
         android:textColorHint="@color/hint_gray"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
     <TextView
         android:id="@+id/tvForgotPassword"

@@ -63,6 +63,7 @@ dependencies {
     // Location & Maps
     implementation(libs.play.services.location)
     implementation(libs.play.services.maps)
+    implementation(libs.play.services.auth)
     
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
