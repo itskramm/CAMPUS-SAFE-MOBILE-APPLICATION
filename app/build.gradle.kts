@@ -1,19 +1,16 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
     namespace = "com.example.campussafeapplication"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.campussafeapplication"
-        minSdk = 36
+        minSdk = 24
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -31,8 +28,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         compose = true
@@ -52,6 +49,34 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    
+    // Lifecycle & ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    
+    // Biometric Authentication
+    implementation(libs.androidx.biometric)
+    
+    // Location & Maps
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
+    
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+    
+    // Supabase
+    implementation(libs.supabase.postgrest.kt)
+    implementation(libs.supabase.gotrue.kt)
+    implementation(libs.supabase.realtime.kt)
+    implementation(libs.supabase.storage.kt)
+    
+    // Ktor (required by Supabase)
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.utils)
+    
+    // Kotlinx Serialization
+    implementation(libs.kotlinx.serialization.json)
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
