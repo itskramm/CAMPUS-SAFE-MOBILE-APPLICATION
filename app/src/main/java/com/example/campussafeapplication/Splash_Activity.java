@@ -30,9 +30,19 @@ public class Splash_Activity extends AppCompatActivity {
             return insets;
         });
 
-        // Delay for 3 seconds then start MainActivity
+        // Delay for 3 seconds then decide which activity to start
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            Intent intent = new Intent(Splash_Activity.this, LoginActivity.class);
+            com.example.campussafeapplication.utils.SessionManager sessionManager = new com.example.campussafeapplication.utils.SessionManager(Splash_Activity.this);
+            
+            Intent intent;
+            if (sessionManager.isLoggedIn()) {
+                // If user is logged in, use Biometric logic
+                intent = new Intent(Splash_Activity.this, BiometricActivity.class);
+            } else {
+                // If not logged in, go to Login
+                intent = new Intent(Splash_Activity.this, LoginActivity.class);
+            }
+
             startActivity(intent);
             finish();
         }, 3000);
