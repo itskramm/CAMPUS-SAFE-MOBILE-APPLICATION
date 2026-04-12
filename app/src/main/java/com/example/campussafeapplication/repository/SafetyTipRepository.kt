@@ -3,6 +3,7 @@ package com.example.campussafeapplication.repository
 import com.example.campussafeapplication.models.SafetyTip
 import com.example.campussafeapplication.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.from
+import io.github.jan.supabase.postgrest.query.Order
 
 class SafetyTipRepository {
     
@@ -15,8 +16,8 @@ class SafetyTipRepository {
         return try {
             val tips = client.from("safety_tips")
                 .select {
-                    order("category")
-                    order("title")
+                    order("category", Order.ASCENDING)
+                    order("title", Order.ASCENDING)
                 }
                 .decodeList<SafetyTip>()
             
@@ -36,7 +37,7 @@ class SafetyTipRepository {
                     filter {
                         eq("category", category)
                     }
-                    order("title")
+                    order("title", Order.ASCENDING)
                 }
                 .decodeList<SafetyTip>()
             

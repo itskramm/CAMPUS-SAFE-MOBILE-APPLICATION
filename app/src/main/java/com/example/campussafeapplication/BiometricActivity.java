@@ -23,3 +23,11 @@ public class BiometricActivity extends AppCompatActivity {
         });
     }
 }
+
+
+
+
+
+
+
+

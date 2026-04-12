@@ -20,7 +20,7 @@
 4. Copy the entire contents of `supabase_setup.sql` file
 5. Paste it into the SQL editor
 6. Click **Run** button
-7. You should see "Success. No rows returned" - this is normal!
+7. You should see "Success. No ~~rows~~ returned" - this is normal!
 
 ### Step 2: Verify Tables Were Created
 
