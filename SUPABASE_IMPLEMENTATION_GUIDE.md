@@ -191,7 +191,41 @@ class CreateAccountActivity : AppCompatActivity() {
                         Toast.makeText(this@CreateAccountActivity, "Account created!", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@CreateAccountActivity, MainActivity::class.java))
                         finish()
+                    }class CreateAccountActivity : AppCompatActivity() {
+
+                    private lateinit var authViewModel: AuthViewModel
+
+                    override fun onCreate(savedInstanceState: Bundle?) {
+                        super.onCreate(savedInstanceState)
+                        setContentView(R.layout.activity_create_account)
+
+                        authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+
+                        lifecycleScope.launch {
+                            authViewModel.authState.collect { state ->
+                                when (state) {
+                                    is AuthViewModel.AuthState.Success -> {
+                                        Toast.makeText(this@CreateAccountActivity, "Account created!", Toast.LENGTH_SHORT).show()
+                                        startActivity(Intent(this@CreateAccountActivity, MainActivity::class.java))
+                                        finish()
+                                    }
+                                    is AuthViewModel.AuthState.Error -> {
+                                        Toast.makeText(this@CreateAccountActivity, state.message, Toast.LENGTH_SHORT).show()
+                                    }
+                                    else -> {}
+                                }
+                            }
+                        }
+
+                        findViewById<Button>(R.id.btnSignUp).setOnClickListener {
+                            val email = findViewById<EditText>(R.id.etEmail).text.toString()
+                            val password = findViewById<EditText>(R.id.etPassword).text.toString()
+                            val fullName = findViewById<EditText>(R.id.etFullName).text.toString()
+
+                            authViewModel.signUp(email, password, fullName)
+                        }
                     }
+                }
                     is AuthViewModel.AuthState.Error -> {
                         Toast.makeText(this@CreateAccountActivity, state.message, Toast.LENGTH_SHORT).show()
                     }
