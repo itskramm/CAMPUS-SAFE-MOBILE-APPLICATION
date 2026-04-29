@@ -17,4 +17,5 @@
         <item>Eighth floor</item>
     </string-array>
     <string name="default_web_client_id">YOUR_GOOGLE_WEB_CLIENT_ID.apps.googleusercontent.com</string>
+    <string name="settings">Settings</string>
 </resources>

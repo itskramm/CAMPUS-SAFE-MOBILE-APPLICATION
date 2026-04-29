@@ -8,14 +8,18 @@ data class HazardReport(
     val id: String? = null,
     @SerialName("user_id")
     val userId: String,
-    @SerialName("hazard_type")
-    val hazardType: String, // "Fire", "Flood", "Structural", "Medical", "Security", "Other"
+    val title: String,
+    val building: String,
+    val floor: String,
+    val room: String,
     val description: String,
-    val location: String,
-    val latitude: Double,
-    val longitude: Double,
     val status: String = "Pending", // "Pending", "In Progress", "Resolved"
-    val severity: String = "Medium", // "Low", "Medium", "High", "Critical"
+    @SerialName("hazard_type")
+    val hazardType: String = "General",
+    val location: String? = null,
+    val latitude: Double? = 0.0,
+    val longitude: Double? = 0.0,
+    val severity: String = "Medium",
     @SerialName("image_url")
     val imageUrl: String? = null,
     @SerialName("created_at")
