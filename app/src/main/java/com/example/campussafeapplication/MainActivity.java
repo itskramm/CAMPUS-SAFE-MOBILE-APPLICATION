@@ -82,11 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     : AppCompatDelegate.MODE_NIGHT_YES;
 
             AppCompatDelegate.setDefaultNightMode(newMode);
-
-            getSharedPreferences("CampusSafePrefs", MODE_PRIVATE)
-                    .edit()
-                    .putInt("themeMode", newMode)
-                    .apply();
+            sessionManager.setThemeMode(newMode);
         });
     }
 }
