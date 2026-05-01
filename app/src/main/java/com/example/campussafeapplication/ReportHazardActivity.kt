@@ -217,6 +217,10 @@ class ReportHazardActivity : AppCompatActivity() {
 
         val report = HazardReport(
             userId = userId,
+            title = title,
+            building = building,
+            floor = floor,
+            room = room,
             hazardType = hazardType,
             description = "$title: $description",
             location = location,

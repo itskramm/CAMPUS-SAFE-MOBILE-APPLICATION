@@ -190,8 +190,8 @@ class NearbyReportsActivity : AppCompatActivity() {
     private fun applyFilter() {
         displayedReports = when (activeFilter) {
             FloorFilter.ALL -> allReports
-            FloorFilter.FLOOR_1 -> allReports.filter { matchesFloor1(it.location) }
-            FloorFilter.FLOOR_2 -> allReports.filter { matchesFloor2(it.location) }
+            FloorFilter.FLOOR_1 -> allReports.filter { matchesFloor1(it.location.orEmpty()) }
+            FloorFilter.FLOOR_2 -> allReports.filter { matchesFloor2(it.location.orEmpty()) }
         }
 
         for (index in 0 until 3) {
@@ -206,7 +206,7 @@ class NearbyReportsActivity : AppCompatActivity() {
             }
 
             titleViews[index].text = report.description.substringBefore(":").uppercase()
-            locationViews[index].text = report.location
+            locationViews[index].text = report.location.orEmpty()
             statusViews[index].text = "Status: ${report.status}"
             statusViews[index].backgroundTintList = ColorStateList.valueOf(statusColor(report.status))
             timeViews[index].text = formatTimeAgo(report.createdAt)
