@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="56dp"
         android:background="#1A1F3D"
         android:paddingHorizontal="16dp"
         app:layout_constraintTop_toTopOf="parent">
@@ -55,6 +55,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btnFilterAllFloors"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:text="All Floors"
@@ -66,6 +67,7 @@
                 app:cornerRadius="8dp" />
 
             <Button
+                android:id="@+id/btnFilterFloor1"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_marginStart="8dp"
@@ -78,6 +80,7 @@
                 app:cornerRadius="8dp" />
 
             <Button
+                android:id="@+id/btnFilterFloor2"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_marginStart="8dp"
@@ -90,6 +93,7 @@
                 app:cornerRadius="8dp" />
 
             <Button
+                android:id="@+id/btnMapView"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_marginStart="8dp"
@@ -106,6 +110,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintTop_toBottomOf="@id/floorFilters">
 
@@ -164,6 +170,7 @@
                         android:layout_marginStart="16dp"
                         android:orientation="vertical">
                         <TextView
+                            android:id="@+id/tvReportTitle1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="FLOODING"
@@ -171,12 +178,14 @@
                             android:textSize="18sp"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/tvReportLocation1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Main Building . Floor 3 . Room 305"
                             android:textColor="#BDBDBD"
                             android:textSize="12sp" />
                         <TextView
+                            android:id="@+id/tvReportStatus1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
@@ -189,6 +198,7 @@
                             android:textSize="10sp" />
                     </LinearLayout>
                     <TextView
+                        android:id="@+id/tvReportTime1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -219,6 +229,7 @@
                         android:layout_marginStart="16dp"
                         android:orientation="vertical">
                         <TextView
+                            android:id="@+id/tvReportTitle2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ELECTRIC FIRE"
@@ -226,12 +237,14 @@
                             android:textSize="18sp"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/tvReportLocation2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Computer Lab . Floor 6 . Room 601"
                             android:textColor="#BDBDBD"
                             android:textSize="12sp" />
                         <TextView
+                            android:id="@+id/tvReportStatus2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
@@ -244,6 +257,7 @@
                             android:textSize="10sp" />
                     </LinearLayout>
                     <TextView
+                        android:id="@+id/tvReportTime2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -275,6 +289,7 @@
                         android:layout_marginStart="16dp"
                         android:orientation="vertical">
                         <TextView
+                            android:id="@+id/tvReportTitle3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ELEVATOR MALFUNCTION"
@@ -282,12 +297,14 @@
                             android:textSize="18sp"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/tvReportLocation3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Main Building . Floor 2 . Near at boys restroom"
                             android:textColor="#BDBDBD"
                             android:textSize="12sp" />
                         <TextView
+                            android:id="@+id/tvReportStatus3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
@@ -300,6 +317,7 @@
                             android:textSize="10sp" />
                     </LinearLayout>
                     <TextView
+                        android:id="@+id/tvReportTime3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -316,6 +334,7 @@
                     android:layout_marginTop="8dp"
                     android:orientation="horizontal">
                     <Button
+                        android:id="@+id/btnNearbyView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -325,6 +344,7 @@
                         android:layout_marginEnd="4dp"
                         app:cornerRadius="4dp" />
                     <Button
+                        android:id="@+id/btnNearbyEdit"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -334,6 +354,7 @@
                         android:layout_marginHorizontal="4dp"
                         app:cornerRadius="4dp" />
                     <Button
+                        android:id="@+id/btnNearbyDelete"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -352,13 +373,13 @@
     <LinearLayout
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="68dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/bottom_nav_rounded_bg"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="8dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout

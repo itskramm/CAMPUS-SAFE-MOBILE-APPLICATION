@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.provider.Settings
 import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.campussafeapplication.utils.SessionManager
+import com.example.campussafeapplication.viewmodels.AuthViewModel
 import java.util.concurrent.Executor
 
 class BiometricActivity : AppCompatActivity() {
@@ -19,12 +22,14 @@ class BiometricActivity : AppCompatActivity() {
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
     private lateinit var sessionManager: SessionManager
+    private lateinit var authViewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_biometric)
-
         sessionManager = SessionManager(this)
+        authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+
         val btnUseFingerprints = findViewById<Button>(R.id.btnUseFingerprints)
         val btnUseLogin = findViewById<Button>(R.id.btnUseLogin)
 
@@ -35,18 +40,14 @@ class BiometricActivity : AppCompatActivity() {
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)
                     Toast.makeText(applicationContext, "Authentication error: $errString", Toast.LENGTH_SHORT).show()
-                    
-                    // If user cancels or clicks negative button, they can still use password
-                    if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON || errorCode == BiometricPrompt.ERROR_USER_CANCELED) {
-                        // Optional: Navigate to login if you want to force re-auth
-                        // startActivity(Intent(this@BiometricActivity, LoginActivity::class.java))
-                        // finish()
-                    }
                 }
 
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
                     Toast.makeText(applicationContext, "Authentication succeeded!", Toast.LENGTH_SHORT).show()
+                    sessionManager.setBiometricEnabled(true)
+                    authViewModel.updateBiometricSetting(true)
+                    // Navigate to MainActivity on success
                     startActivity(Intent(this@BiometricActivity, MainActivity::class.java))
                     finish()
                 }
@@ -68,31 +69,30 @@ class BiometricActivity : AppCompatActivity() {
         }
 
         btnUseLogin.setOnClickListener {
-            // If they choose to use login, we probably want to clear session or just go to login
-            // For "second login" fallback, we go to LoginActivity
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
         
+        // Auto-start biometric prompt when activity opens
         checkAndAuthenticate()
     }
 
     private fun checkAndAuthenticate() {
         val biometricManager = BiometricManager.from(this)
-        val authenticators = BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL
-        
-        when (biometricManager.canAuthenticate(authenticators)) {
+        when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
             BiometricManager.BIOMETRIC_SUCCESS -> {
                 biometricPrompt.authenticate(promptInfo)
             }
             BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE ->
-                Toast.makeText(this, "No biometric features available.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "No biometric features available on this device.", Toast.LENGTH_LONG).show()
             BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE ->
                 Toast.makeText(this, "Biometric features are currently unavailable.", Toast.LENGTH_LONG).show()
             BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
+                // Prompts the user to create credentials that your app accepts.
                 val enrollIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
-                        putExtra(Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED, authenticators)
+                        putExtra(Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
+                            BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
                     }
                 } else {
                     Intent(Settings.ACTION_SECURITY_SETTINGS)

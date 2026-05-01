@@ -10,7 +10,7 @@
     <View
         android:id="@+id/topBar"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="56dp"
         android:background="#1A1F3D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +46,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintTop_toBottomOf="@id/topBar">
 
@@ -53,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="16dp">
 
             <!-- Submit with section -->
             <LinearLayout
@@ -142,7 +144,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:text="Indoor Location:"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
@@ -200,8 +202,8 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/etRoom"
-                android:layout_width="200dp"
+                android:id="@+id/etRoomNumber"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/input_box_bg"
@@ -215,11 +217,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/cbUseGps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
@@ -237,17 +240,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/grid_item_bg"
                 android:backgroundTint="#616161"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="12dp">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="120dp"
                     android:layout_height="90dp"
                     app:cardCornerRadius="8dp">
                     <ImageView
+                        android:id="@+id/ivSelectedPhoto"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
@@ -263,7 +267,7 @@
                     <Button
                         android:id="@+id/btnTakePhoto"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="36dp"
                         android:text="Take Photo"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -274,7 +278,7 @@
                     <Button
                         android:id="@+id/btnAttachPhoto"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="36dp"
                         android:layout_marginTop="8dp"
                         android:backgroundTint="@android:color/darker_gray"
                         android:text="Attach Photo"
@@ -290,7 +294,7 @@
                 android:id="@+id/etHazardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/input_box_bg"
                 android:hint="Hazard Title"
                 android:paddingHorizontal="12dp"
@@ -313,11 +317,11 @@
 
             <Button
                 android:id="@+id/btnSubmitReport"
-                android:layout_width="180dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="12dp"
                 android:backgroundTint="@color/btn_gray"
                 android:text="Submit Report"
                 android:textAllCaps="false"
@@ -331,13 +335,13 @@
     <LinearLayout
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="68dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/bottom_nav_rounded_bg"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="8dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
@@ -442,7 +446,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_settings"
-                android:contentDescription="@string/settings"/>
+                android:contentDescription="Settings"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -32,9 +32,15 @@ class AuthRepository {
                     email = email,
                     fullName = fullName
                 )
-                
-                client.from("users").insert(user)
-                
+
+                try {
+                    client.from("users").insert(user)
+                } catch (e: Exception) {
+                    if (!isDuplicateKeyError(e)) {
+                        return Result.failure(e)
+                    }
+                }
+
                 Result.success(user)
             } else {
                 Result.failure(Exception("Failed to create user"))
@@ -75,10 +81,20 @@ class AuthRepository {
                         email = authUser.email ?: email,
                         fullName = authUser.userMetadata?.get("full_name")?.toString() ?: "User"
                     )
-                    try {
+                    val insertResult = try {
                         client.from("users").insert(newUser)
+                        Result.success(Unit)
                     } catch (e: Exception) {
-                        // Ignore insert error if it already exists or fails
+                        if (isDuplicateKeyError(e)) {
+                            Result.success(Unit)
+                        } else {
+                            Result.failure(e)
+                        }
+                    }
+                    insertResult.onFailure { error ->
+                        return Result.failure(
+                            Exception(error.message ?: "Failed to create user profile")
+                        )
                     }
                     Result.success(newUser)
                 }
@@ -172,6 +188,62 @@ class AuthRepository {
             null
         }
     }
+
+    /**
+     * Update current user's profile fields
+     */
+    suspend fun updateProfile(
+        fullName: String,
+        email: String,
+        phoneNumber: String
+    ): Result<User> {
+        return try {
+            val authUser = client.auth.currentUserOrNull()
+                ?: return Result.failure(Exception("No authenticated user"))
+
+            val updates = mapOf(
+                "full_name" to fullName,
+                "email" to email,
+                "phone_number" to phoneNumber
+            )
+
+            val user = client.from("users")
+                .update(updates) {
+                    filter {
+                        eq("id", authUser.id)
+                    }
+                    select()
+                }
+                .decodeSingle<User>()
+
+            Result.success(user)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    /**
+     * Update biometric preference for current user
+     */
+    suspend fun updateBiometricSetting(enabled: Boolean): Result<User> {
+        return try {
+            val authUser = client.auth.currentUserOrNull()
+                ?: return Result.failure(Exception("No authenticated user"))
+
+            val user = client.from("users")
+                .update(mapOf("biometric_enabled" to enabled)) {
+                    filter {
+                        eq("id", authUser.id)
+                    }
+                    select()
+                }
+                .decodeSingle<User>()
+
+            Result.success(user)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
     
     /**
      * Check if user is logged in
@@ -190,5 +262,9 @@ class AuthRepository {
         } catch (e: Exception) {
             Result.failure(e)
         }
+    }
+
+    private fun isDuplicateKeyError(error: Exception): Boolean {
+        return error.message?.contains("duplicate key", ignoreCase = true) == true
     }
 }

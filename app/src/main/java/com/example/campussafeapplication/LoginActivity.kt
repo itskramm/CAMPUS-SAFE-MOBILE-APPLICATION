@@ -70,6 +70,14 @@ class LoginActivity : AppCompatActivity() {
                         btnLogin.isEnabled = true
                         Toast.makeText(this@LoginActivity, state.message, Toast.LENGTH_SHORT).show()
                     }
+                    is AuthViewModel.AuthState.PasswordResetEmailSent -> {
+                        btnLogin.isEnabled = true
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Password reset email sent.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                     else -> {
                         btnLogin.isEnabled = true
                     }
@@ -102,7 +110,12 @@ class LoginActivity : AppCompatActivity() {
         }
         
         tvForgotPassword.setOnClickListener {
-            Toast.makeText(this, "Forgot Password Clicked", Toast.LENGTH_SHORT).show()
+            val email = etEmail.text.toString().trim()
+            if (email.isEmpty()) {
+                Toast.makeText(this, "Enter your email first", Toast.LENGTH_SHORT).show()
+            } else {
+                authViewModel.resetPassword(email)
+            }
         }
     }
 }

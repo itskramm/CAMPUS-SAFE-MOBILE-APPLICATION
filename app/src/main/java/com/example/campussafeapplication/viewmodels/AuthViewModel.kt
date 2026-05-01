@@ -17,12 +17,23 @@ class AuthViewModel : ViewModel() {
     
     private val _currentUser = MutableStateFlow<User?>(null)
     val currentUser: StateFlow<User?> = _currentUser
+
+    private val _profileState = MutableStateFlow<ProfileState>(ProfileState.Idle)
+    val profileState: StateFlow<ProfileState> = _profileState
     
     sealed class AuthState {
         object Idle : AuthState()
         object Loading : AuthState()
         data class Success(val user: User) : AuthState()
+        object PasswordResetEmailSent : AuthState()
         data class Error(val message: String) : AuthState()
+    }
+
+    sealed class ProfileState {
+        object Idle : ProfileState()
+        object Loading : ProfileState()
+        data class Success(val user: User) : ProfileState()
+        data class Error(val message: String) : ProfileState()
     }
     
     fun signUp(email: String, password: String, fullName: String) {
@@ -94,9 +105,39 @@ class AuthViewModel : ViewModel() {
             val result = authRepository.resetPassword(email)
             
             result.onSuccess {
-                _authState.value = AuthState.Idle
+                _authState.value = AuthState.PasswordResetEmailSent
             }.onFailure { error ->
                 _authState.value = AuthState.Error(error.message ?: "Password reset failed")
+            }
+        }
+    }
+
+    fun updateProfile(fullName: String, email: String, phoneNumber: String) {
+        viewModelScope.launch {
+            _profileState.value = ProfileState.Loading
+
+            val result = authRepository.updateProfile(fullName, email, phoneNumber)
+
+            result.onSuccess { user ->
+                _currentUser.value = user
+                _profileState.value = ProfileState.Success(user)
+            }.onFailure { error ->
+                _profileState.value = ProfileState.Error(error.message ?: "Profile update failed")
+            }
+        }
+    }
+
+    fun updateBiometricSetting(enabled: Boolean) {
+        viewModelScope.launch {
+            _profileState.value = ProfileState.Loading
+
+            val result = authRepository.updateBiometricSetting(enabled)
+
+            result.onSuccess { user ->
+                _currentUser.value = user
+                _profileState.value = ProfileState.Success(user)
+            }.onFailure { error ->
+                _profileState.value = ProfileState.Error(error.message ?: "Biometric update failed")
             }
         }
     }
