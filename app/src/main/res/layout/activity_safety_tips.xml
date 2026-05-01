@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050818">
+    android:background="@color/bg_primary">
 
     <!-- Top Bar -->
     <RelativeLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#1A1F3D"
+        android:background="@color/top_bar_bg"
         android:paddingHorizontal="16dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,6 +21,7 @@
             android:layout_height="24dp"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_arrow_back"
+            app:tint="@color/top_bar_text"
             android:contentDescription="Back" />
 
         <TextView
@@ -30,7 +31,7 @@
             android:layout_marginStart="24dp"
             android:layout_toEndOf="@id/btnBack"
             android:text="Safety Tips"
-            android:textColor="@color/white"
+            android:textColor="@color/top_bar_text"
             android:textSize="20sp"
             android:textStyle="bold" />
     </RelativeLayout>
@@ -53,20 +54,21 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#1A1F3D"
+                android:background="@color/card_bg"
                 android:paddingHorizontal="12dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="Safety Tips"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/text_primary" />
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_chevron_down" />
+                    android:src="@drawable/ic_chevron_down"
+                    app:tint="@color/text_primary" />
             </RelativeLayout>
 
             <!-- Tip 1: Stay Alert -->
@@ -74,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:cardBackgroundColor="#1A1F3D"
+                app:cardBackgroundColor="@color/card_bg"
                 app:cardCornerRadius="8dp"
                 app:strokeWidth="0dp">
                 <LinearLayout
@@ -93,7 +95,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="STAY ALERT"
-                            android:textColor="@color/white"
+                            android:textColor="@color/text_primary"
                             android:textSize="28sp"
                             android:textStyle="bold" />
                         <TextView
@@ -101,7 +103,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Be aware of your surroundings"
-                            android:textColor="#BDBDBD"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp" />
                     </LinearLayout>
                     <ImageView
@@ -116,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:cardBackgroundColor="#1A1F3D"
+                app:cardBackgroundColor="@color/card_bg"
                 app:cardCornerRadius="8dp"
                 app:strokeWidth="0dp">
                 <LinearLayout
@@ -135,7 +137,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="DON'T PANIC"
-                            android:textColor="@color/white"
+                            android:textColor="@color/text_primary"
                             android:textSize="28sp"
                             android:textStyle="bold" />
                         <TextView
@@ -143,14 +145,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Stay calm and Report it"
-                            android:textColor="#BDBDBD"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp" />
                     </LinearLayout>
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@android:drawable/ic_menu_info_details"
-                        app:tint="@color/white" />
+                        app:tint="@color/text_primary" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -159,27 +161,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="24dp"
-                android:background="#1A1F3D"
+                android:background="@color/card_bg"
                 android:paddingHorizontal="12dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="Emergency Hotlines"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/text_primary" />
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_chevron_down" />
+                    android:src="@drawable/ic_chevron_down"
+                    app:tint="@color/text_primary" />
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="#1A1F3D"
+                android:background="@color/card_bg"
                 android:orientation="vertical"
                 android:padding="16dp">
 
@@ -187,39 +190,39 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Command Center:"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="(02) 8789-3200"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/text_primary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:text="Taguig PNP:"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="(02) 8642-3582 or 0998-598-7932"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/text_primary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:text="Taguig BFP (Fire) :"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="(02) 8837-0740 or 0906-211-0919"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/text_primary" />
             </LinearLayout>
 
         </LinearLayout>
@@ -251,12 +254,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_home"
+                app:tint="@color/nav_icon_tint"
                 android:contentDescription="Home"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Home"
-                android:textColor="@color/white"
+                android:textColor="@color/nav_text_color"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -273,12 +277,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_reports"
+                app:tint="@color/nav_icon_tint"
                 android:contentDescription="Reports"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Reports"
-                android:textColor="@color/white"
+                android:textColor="@color/nav_text_color"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -295,13 +300,13 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/ic_add_circle"
-                app:tint="#FFFFFF"
+                app:tint="@color/nav_icon_tint"
                 android:contentDescription="Add"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:textColor="@color/white"
+                android:textColor="@color/nav_text_color"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -318,12 +323,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_location"
+                app:tint="@color/nav_icon_tint"
                 android:contentDescription="Maps"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Maps"
-                android:textColor="@color/white"
+                android:textColor="@color/nav_text_color"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -340,12 +346,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_settings"
+                app:tint="@color/nav_selected"
                 android:contentDescription="Settings"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Settings"
-                android:textColor="#4285F4"
+                android:textColor="@color/nav_selected"
                 android:textSize="10sp" />
         </LinearLayout>
 

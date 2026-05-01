@@ -11,7 +11,7 @@
         <item name="colorSecondaryVariant">@color/shield_outline</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/bg_primary</item>
+        <item name="android:statusBarColor">#1A1F3D</item>
         <item name="android:windowBackground">@color/bg_primary</item>
     </style>
 </resources>

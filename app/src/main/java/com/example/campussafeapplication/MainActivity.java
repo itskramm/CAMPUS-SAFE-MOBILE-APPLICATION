@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        setupThemeToggle();
+        // setupThemeToggle();
         bindCurrentUser();
 
         setupNavigation();
@@ -73,16 +73,5 @@ public class MainActivity extends AppCompatActivity {
             tvUserEmail.setText(email);
         }
     }
-        // Theme Toggle
-        private void setupThemeToggle() {
-        ImageView themeToggle = findViewById(R.id.btnThemeToggle);
-        themeToggle.setOnClickListener(v -> {
-            int newMode = (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
-                    ? AppCompatDelegate.MODE_NIGHT_NO
-                    : AppCompatDelegate.MODE_NIGHT_YES;
 
-            AppCompatDelegate.setDefaultNightMode(newMode);
-            sessionManager.setThemeMode(newMode);
-        });
-    }
 }
