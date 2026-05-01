@@ -3,12 +3,15 @@ package com.example.campussafeapplication
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.example.campussafeapplication.models.HazardReport
 import com.example.campussafeapplication.utils.SessionManager
 import com.example.campussafeapplication.viewmodels.HazardReportViewModel
@@ -25,6 +28,7 @@ class MyReportsActivity : AppCompatActivity() {
     private lateinit var titleViews: List<TextView>
     private lateinit var locationViews: List<TextView>
     private lateinit var timeViews: List<TextView>
+    private lateinit var imageViews: List<ImageView>
 
     private val displayedReports: MutableList<HazardReport?> = MutableList(4) { null }
     private var isRefreshingAfterAction = false
@@ -67,6 +71,12 @@ class MyReportsActivity : AppCompatActivity() {
             findViewById(R.id.time2),
             findViewById(R.id.time3),
             findViewById(R.id.time4)
+        )
+        imageViews = listOf(
+            findViewById(R.id.imgReport1),
+            findViewById(R.id.imgReport2),
+            findViewById(R.id.imgReport3),
+            findViewById(R.id.imgReport4)
         )
     }
 
@@ -181,6 +191,15 @@ class MyReportsActivity : AppCompatActivity() {
             locationViews[index].text = report.location
             timeViews[index].text = formatTimeAgo(report.createdAt)
             statusViews[index].backgroundTintList = ColorStateList.valueOf(statusColor(report.status))
+
+            if (!report.imageUrl.isNullOrBlank()) {
+                imageViews[index].visibility = View.VISIBLE
+                Glide.with(this)
+                    .load(report.imageUrl)
+                    .into(imageViews[index])
+            } else {
+                imageViews[index].visibility = View.GONE
+            }
         }
     }
 

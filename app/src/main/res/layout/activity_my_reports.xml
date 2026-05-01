@@ -134,11 +134,23 @@
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
 
+                <ImageView
+                    android:id="@+id/imgReport1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/loc1"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/input_box_bg"
+                    android:visibility="gone"
+                    android:contentDescription="Report Image" />
+
                 <LinearLayout
+                    android:id="@+id/actions1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
+                    android:layout_alignTop="@id/status1"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -164,7 +176,7 @@
                     android:id="@+id/time1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/loc1"
+                    android:layout_below="@id/imgReport1"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="12dp"
                     android:text="2 days ago"
@@ -212,11 +224,23 @@
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
 
+                <ImageView
+                    android:id="@+id/imgReport2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/loc2"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/input_box_bg"
+                    android:visibility="gone"
+                    android:contentDescription="Report Image" />
+
                 <LinearLayout
+                    android:id="@+id/actions2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
+                    android:layout_alignTop="@id/status2"
                     android:orientation="horizontal">
                     <ImageView android:id="@+id/btnMarkFixed2" android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_check" app:tint="#4285F4" android:layout_marginEnd="8dp" android:contentDescription="Mark Fixed"/>
                     <TextView android:id="@+id/btnEditReport2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="×" android:textColor="@color/white" android:textSize="24sp" android:layout_marginEnd="8dp"/>
@@ -227,7 +251,7 @@
                     android:id="@+id/time2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/loc2"
+                    android:layout_below="@id/imgReport2"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="12dp"
                     android:text="4 days ago"
@@ -275,11 +299,23 @@
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
 
+                <ImageView
+                    android:id="@+id/imgReport3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/loc3"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/input_box_bg"
+                    android:visibility="gone"
+                    android:contentDescription="Report Image" />
+
                 <LinearLayout
+                    android:id="@+id/actions3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
+                    android:layout_alignTop="@id/status3"
                     android:orientation="horizontal">
                     <ImageView android:id="@+id/btnMarkFixed3" android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_check" app:tint="#4285F4" android:layout_marginEnd="8dp" android:contentDescription="Mark Fixed"/>
                     <TextView android:id="@+id/btnEditReport3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="×" android:textColor="@color/white" android:textSize="24sp" android:layout_marginEnd="8dp"/>
@@ -290,7 +326,7 @@
                     android:id="@+id/time3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/loc3"
+                    android:layout_below="@id/imgReport3"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="12dp"
                     android:text="14 hours ago"
@@ -338,11 +374,23 @@
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
 
+                <ImageView
+                    android:id="@+id/imgReport4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/loc4"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/input_box_bg"
+                    android:visibility="gone"
+                    android:contentDescription="Report Image" />
+
                 <LinearLayout
+                    android:id="@+id/actions4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
+                    android:layout_alignTop="@id/status4"
                     android:orientation="vertical"
                     android:gravity="center">
                     <ImageView android:id="@+id/btnMarkFixed4" android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_check" app:tint="#4285F4" android:contentDescription="Mark Fixed"/>
@@ -354,7 +402,7 @@
                     android:id="@+id/time4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/loc4"
+                    android:layout_below="@id/imgReport4"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="12dp"
                     android:text="1 hours ago"
