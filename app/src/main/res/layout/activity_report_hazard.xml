@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050818">
+    android:background="@color/bg_primary">
 
     <!-- Top Bar Background -->
     <View
         android:id="@+id/topBar"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:background="#1A1F3D"
+        android:background="@color/top_bar_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -242,7 +242,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/grid_item_bg"
-                android:backgroundTint="#616161"
                 android:orientation="horizontal"
                 android:padding="12dp">
 
@@ -273,14 +272,14 @@
                         android:textColor="@color/white"
                         android:textSize="12sp"
                         app:cornerRadius="20dp"
-                        android:backgroundTint="@android:color/darker_gray"/>
+                        android:backgroundTint="@color/btn_gray"/>
 
                     <Button
                         android:id="@+id/btnAttachPhoto"
                         android:layout_width="match_parent"
                         android:layout_height="36dp"
                         android:layout_marginTop="8dp"
-                        android:backgroundTint="@android:color/darker_gray"
+                        android:backgroundTint="@color/btn_gray"
                         android:text="Attach Photo"
                         android:textAllCaps="false"
                         android:textColor="@color/white"

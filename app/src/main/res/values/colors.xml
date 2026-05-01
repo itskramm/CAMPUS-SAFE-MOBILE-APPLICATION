@@ -12,7 +12,8 @@
     <color name="shield_outline">#2D5BD0</color>
     <color name="btn_gray">#757575</color>
     <color name="edit_text_border">#CBD5E1</color>
-    <color name="input_bg">#FFFFFF</color>
+    <color name="input_bg">#1A1F3D</color>
+    <color name="input_stroke">#252B4B</color>
     <color name="hint_gray">#6B7280</color>
 
     <!-- Theme-dependent colors (Consolidated Dark Navy Theme) -->
