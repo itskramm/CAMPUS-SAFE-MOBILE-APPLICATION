@@ -34,6 +34,10 @@ class SessionManager(context: Context) {
     fun getUserName(): String? = prefs.getString(KEY_USER_NAME, null)
     
     fun isLoggedIn(): Boolean = prefs.getBoolean(KEY_IS_LOGGED_IN, false)
+
+    fun setLoggedIn(isLoggedIn: Boolean) {
+        prefs.edit().putBoolean(KEY_IS_LOGGED_IN, isLoggedIn).apply()
+    }
     
     fun setBiometricEnabled(enabled: Boolean) {
         prefs.edit().putBoolean(KEY_BIOMETRIC_ENABLED, enabled).apply()
@@ -48,6 +52,11 @@ class SessionManager(context: Context) {
     fun getThemeMode(): Int = prefs.getInt(KEY_THEME_MODE, -1)
     
     fun clearSession() {
-        prefs.edit().clear().apply()
+        prefs.edit().apply {
+            // We keep USER_ID and USER_NAME to support biometric login identity
+            // but mark the session as logged out.
+            putBoolean(KEY_IS_LOGGED_IN, false)
+            apply()
+        }
     }
 }

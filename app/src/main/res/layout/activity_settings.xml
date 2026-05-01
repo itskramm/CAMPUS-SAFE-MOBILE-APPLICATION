@@ -140,13 +140,16 @@
 
             <!-- Biometric Login Toggle -->
             <LinearLayout
+                android:id="@+id/btnBiometricToggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/grid_item_bg"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:clickable="true"
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="40dp"
@@ -177,7 +180,9 @@
                 <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/switchBiometric"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false" />
             </LinearLayout>
 
             <!-- Privacy & Security -->

@@ -44,12 +44,20 @@ class BiometricActivity : AppCompatActivity() {
 
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    Toast.makeText(applicationContext, "Authentication succeeded!", Toast.LENGTH_SHORT).show()
-                    sessionManager.setBiometricEnabled(true)
-                    authViewModel.updateBiometricSetting(true)
-                    // Navigate to MainActivity on success
-                    startActivity(Intent(this@BiometricActivity, MainActivity::class.java))
-                    finish()
+                    val userId = sessionManager.getUserId()
+                    if (userId.isNotEmpty()) {
+                        sessionManager.setLoggedIn(true)
+                        Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_SHORT).show()
+                        // Navigate to MainActivity on success
+                        startActivity(Intent(this@BiometricActivity, MainActivity::class.java))
+                        finish()
+                    } else {
+                        // This case might happen if user is enabling biometrics for the first time
+                        Toast.makeText(applicationContext, "Biometrics verified!", Toast.LENGTH_SHORT).show()
+                        sessionManager.setBiometricEnabled(true)
+                        authViewModel.updateBiometricSetting(true)
+                        finish()
+                    }
                 }
 
                 override fun onAuthenticationFailed() {

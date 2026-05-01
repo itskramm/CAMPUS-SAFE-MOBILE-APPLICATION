@@ -8,6 +8,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.campussafeapplication.utils.SessionManager
@@ -47,6 +50,14 @@ class LoginActivity : AppCompatActivity() {
         val tvForgotPassword = findViewById<TextView>(R.id.tvForgotPassword)
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
+        val btnBiometric = findViewById<Button>(R.id.btnBiometric)
+        
+        // Show biometric button if enabled in settings
+        btnBiometric.visibility = if (sessionManager.isBiometricEnabled()) android.view.View.VISIBLE else android.view.View.GONE
+
+        btnBiometric.setOnClickListener {
+            startActivity(Intent(this, BiometricActivity::class.java))
+        }
         
         // Observe auth state
         lifecycleScope.launch {
@@ -117,5 +128,12 @@ class LoginActivity : AppCompatActivity() {
                 authViewModel.resetPassword(email)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Update biometric button visibility when returning to screen
+        val btnBiometric = findViewById<Button>(R.id.btnBiometric)
+        btnBiometric.visibility = if (sessionManager.isBiometricEnabled()) android.view.View.VISIBLE else android.view.View.GONE
     }
 }

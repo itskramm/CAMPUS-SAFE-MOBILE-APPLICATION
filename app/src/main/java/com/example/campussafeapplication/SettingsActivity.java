@@ -12,12 +12,17 @@ public class SettingsActivity extends AppCompatActivity {
     private SessionManager sessionManager;
     private AuthViewModel authViewModel;
 
+    private com.google.android.material.switchmaterial.SwitchMaterial switchBiometric;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         sessionManager = new SessionManager(this);
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
+
+        switchBiometric = findViewById(R.id.switchBiometric);
+        switchBiometric.setChecked(sessionManager.isBiometricEnabled());
 
         // Top Bar
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
@@ -29,17 +34,21 @@ public class SettingsActivity extends AppCompatActivity {
         findViewById(R.id.btnAccount).setOnClickListener(v -> 
             startActivity(new Intent(this, ProfileActivity.class)));
 
-        findViewById(R.id.btnPrivacy).setOnClickListener(v -> 
+        findViewById(R.id.btnBiometricToggle).setOnClickListener(v -> 
         {
             boolean enabled = !sessionManager.isBiometricEnabled();
             sessionManager.setBiometricEnabled(enabled);
             authViewModel.updateBiometricSetting(enabled);
+            switchBiometric.setChecked(enabled);
             Toast.makeText(
                     this,
                     enabled ? "Biometric login enabled" : "Biometric login disabled",
                     Toast.LENGTH_SHORT
             ).show();
         });
+
+        findViewById(R.id.btnPrivacy).setOnClickListener(v -> 
+            Toast.makeText(this, "Privacy Settings Clicked", Toast.LENGTH_SHORT).show());
 
         findViewById(R.id.btnHelp).setOnClickListener(v -> 
             startActivity(new Intent(this, SafetyTipsActivity.class)));

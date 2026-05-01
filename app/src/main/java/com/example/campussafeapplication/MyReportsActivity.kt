@@ -30,6 +30,8 @@ class MyReportsActivity : AppCompatActivity() {
     private lateinit var timeViews: List<TextView>
     private lateinit var imageViews: List<ImageView>
 
+    private lateinit var cardContainers: List<View>
+
     private val displayedReports: MutableList<HazardReport?> = MutableList(4) { null }
     private var isRefreshingAfterAction = false
 
@@ -48,6 +50,12 @@ class MyReportsActivity : AppCompatActivity() {
     }
 
     private fun bindViews() {
+        cardContainers = listOf(
+            findViewById(R.id.cardReport1),
+            findViewById(R.id.cardReport2),
+            findViewById(R.id.cardReport3),
+            findViewById(R.id.cardReport4)
+        )
         statusViews = listOf(
             findViewById(R.id.status1),
             findViewById(R.id.status2),
@@ -178,14 +186,11 @@ class MyReportsActivity : AppCompatActivity() {
             displayedReports[index] = report
 
             if (report == null) {
-                statusViews[index].text = "No Report"
-                titleViews[index].text = "No hazard report yet"
-                locationViews[index].text = "Submit one from the Add tab."
-                timeViews[index].text = ""
-                statusViews[index].backgroundTintList = ColorStateList.valueOf(0xFF757575.toInt())
+                cardContainers[index].visibility = View.GONE
                 continue
             }
 
+            cardContainers[index].visibility = View.VISIBLE
             statusViews[index].text = report.status
             titleViews[index].text = report.description.substringBefore(":").uppercase()
             locationViews[index].text = report.location
