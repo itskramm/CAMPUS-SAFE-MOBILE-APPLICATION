@@ -3,6 +3,8 @@ package com.example.campussafeapplication
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
@@ -25,8 +27,19 @@ import com.example.campussafeapplication.utils.SessionManager
 import com.example.campussafeapplication.utils.SwipeNavigationHelper
 import com.example.campussafeapplication.viewmodels.HazardReportViewModel
 import com.google.android.gms.location.LocationServices
+import com.google.ai.client.generativeai.GenerativeModel
+import com.google.ai.client.generativeai.type.content
+import com.google.ai.client.generativeai.type.generationConfig
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.json.JSONObject
 import java.io.File
+import java.io.InputStream
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 class ReportHazardActivity : AppCompatActivity() {
 
@@ -46,6 +59,23 @@ class ReportHazardActivity : AppCompatActivity() {
     private var pendingCameraImageUri: Uri? = null
 
     private val fusedLocationClient by lazy { LocationServices.getFusedLocationProviderClient(this) }
+
+    // Campus location constants
+    private val STI_LAT = 14.5523065
+    private val STI_LON = 121.0562232
+    private val RADIUS_METERS = 200.0
+
+    // Gemini constants
+    private val GEMINI_API_KEY = "AIzaSyDfHmgaBOCkyu2xBLJDXoUMy0PpuGHLUko"
+    private val generativeModel by lazy {
+        GenerativeModel(
+            modelName = "gemini-1.5-flash",
+            apiKey = GEMINI_API_KEY,
+            generationConfig = generationConfig {
+                responseMimeType = "application/json"
+            }
+        )
+    }
 
     private val galleryLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
@@ -210,28 +240,110 @@ class ReportHazardActivity : AppCompatActivity() {
             return
         }
 
-        val building = spinnerBuilding.selectedItem?.toString().orEmpty()
-        val floor = spinnerFloor.selectedItem?.toString().orEmpty()
-        val location = "$building, $floor, Room $room"
-        val hazardType = detectHazardType("$title $description")
-        val latitude = if (cbUseGps.isChecked) currentLocation?.latitude ?: 0.0 else 0.0
-        val longitude = if (cbUseGps.isChecked) currentLocation?.longitude ?: 0.0 else 0.0
+        if (cbUseGps.isChecked) {
+            val loc = currentLocation
+            if (loc == null) {
+                Toast.makeText(this, "Waiting for GPS location...", Toast.LENGTH_SHORT).show()
+                loadLastKnownLocation()
+                return
+            }
+            if (!isWithinCampus(loc.latitude, loc.longitude)) {
+                Toast.makeText(this, "You must be within STI College Global City to report.", Toast.LENGTH_LONG).show()
+                return
+            }
+        }
 
-        val report = HazardReport(
-            userId = userId,
-            title = title,
-            building = building,
-            floor = floor,
-            room = room,
-            hazardType = hazardType,
-            description = "$title: $description",
-            location = location,
-            latitude = latitude,
-            longitude = longitude,
-            imageUrl = selectedImageUri
-        )
+        btnSubmitReport.isEnabled = false
+        Toast.makeText(this, "Validating report with AI...", Toast.LENGTH_SHORT).show()
 
-        reportViewModel.createReport(report)
+        lifecycleScope.launch {
+            val isValid = validateWithGemini(title, description, selectedImageUri)
+            if (isValid) {
+                val building = spinnerBuilding.selectedItem?.toString().orEmpty()
+                val floor = spinnerFloor.selectedItem?.toString().orEmpty()
+                val location = "$building, $floor, Room $room"
+                val hazardType = detectHazardType("$title $description")
+                val latitude = if (cbUseGps.isChecked) currentLocation?.latitude ?: 0.0 else 0.0
+                val longitude = if (cbUseGps.isChecked) currentLocation?.longitude ?: 0.0 else 0.0
+
+                val report = HazardReport(
+                    userId = userId,
+                    title = title,
+                    building = building,
+                    floor = floor,
+                    room = room,
+                    hazardType = hazardType,
+                    description = "$title: $description",
+                    location = location,
+                    latitude = latitude,
+                    longitude = longitude,
+                    imageUrl = selectedImageUri
+                )
+                reportViewModel.createReport(report)
+            } else {
+                btnSubmitReport.isEnabled = true
+            }
+        }
+    }
+
+    private suspend fun validateWithGemini(title: String, description: String, imageUriStr: String?): Boolean {
+        return withContext(Dispatchers.IO) {
+            try {
+                val prompt = """
+                    You are an AI hazard validator for STI College Global City.
+                    Analyze if the following report is a valid campus hazard.
+                    A valid hazard is something that poses a threat to safety (fire, leak, broken structure, etc.).
+                    Spam, jokes, or non-hazard content should be rejected.
+                    
+                    Title: $title
+                    Description: $description
+                    
+                    Respond ONLY with this JSON schema:
+                    { "isValid": boolean, "reason": "string" }
+                """.trimIndent()
+
+                val inputContent = content {
+                    imageUriStr?.let { uriStr ->
+                        try {
+                            val uri = Uri.parse(uriStr)
+                            val inputStream: InputStream? = contentResolver.openInputStream(uri)
+                            val bitmap = BitmapFactory.decodeStream(inputStream)
+                            if (bitmap != null) {
+                                image(bitmap)
+                            }
+                        } catch (e: Exception) {
+                            // Ignore image error and proceed with text
+                        }
+                    }
+                    text(prompt)
+                }
+
+                val response = generativeModel.generateContent(inputContent)
+                val responseText = response.text ?: ""
+                val json = JSONObject(responseText)
+                val isValid = json.getBoolean("isValid")
+                val reason = json.getString("reason")
+
+                withContext(Dispatchers.Main) {
+                    if (!isValid) {
+                        Toast.makeText(this@ReportHazardActivity, "Rejected: $reason", Toast.LENGTH_LONG).show()
+                    }
+                }
+                isValid
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@ReportHazardActivity, "Validation Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+                // If AI fails, we might want to allow the report or fail safe. Let's allow but notify.
+                true 
+            }
+        }
+    }
+
+    private fun isWithinCampus(lat: Double, lon: Double): Boolean {
+        val results = FloatArray(1)
+        Location.distanceBetween(lat, lon, STI_LAT, STI_LON, results)
+        return results[0] <= RADIUS_METERS
     }
 
     private fun detectHazardType(content: String): String {
