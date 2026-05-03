@@ -2,6 +2,10 @@ package com.example.campussafeapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +23,11 @@ class SafetyTipsActivity : AppCompatActivity() {
     private lateinit var tvTipTitle2: TextView
     private lateinit var tvTipDesc2: TextView
 
+    private lateinit var containerSafetyTips: LinearLayout
+    private lateinit var containerHotlines: LinearLayout
+    private lateinit var ivChevronTips: ImageView
+    private lateinit var ivChevronHotlines: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_safety_tips)
@@ -30,9 +39,35 @@ class SafetyTipsActivity : AppCompatActivity() {
         tvTipTitle2 = findViewById(R.id.tvTipTitle2)
         tvTipDesc2 = findViewById(R.id.tvTipDesc2)
 
+        containerSafetyTips = findViewById(R.id.containerSafetyTips)
+        containerHotlines = findViewById(R.id.containerHotlines)
+        ivChevronTips = findViewById(R.id.ivChevronTips)
+        ivChevronHotlines = findViewById(R.id.ivChevronHotlines)
+
+        setupDropdowns()
         setupNavigation()
         observeTips()
         tipViewModel.getAllSafetyTips()
+    }
+
+    private fun setupDropdowns() {
+        findViewById<RelativeLayout>(R.id.headerSafetyTips).setOnClickListener {
+            toggleSection(containerSafetyTips, ivChevronTips)
+        }
+
+        findViewById<RelativeLayout>(R.id.headerHotlines).setOnClickListener {
+            toggleSection(containerHotlines, ivChevronHotlines)
+        }
+    }
+
+    private fun toggleSection(container: View, chevron: ImageView) {
+        if (container.visibility == View.VISIBLE) {
+            container.visibility = View.GONE
+            chevron.animate().rotation(0f).start()
+        } else {
+            container.visibility = View.VISIBLE
+            chevron.animate().rotation(180f).start()
+        }
     }
 
     private fun setupNavigation() {

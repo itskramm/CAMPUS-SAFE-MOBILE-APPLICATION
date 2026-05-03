@@ -14,6 +14,7 @@ public class SettingsActivity extends AppCompatActivity {
     private AuthViewModel authViewModel;
 
     private com.google.android.material.switchmaterial.SwitchMaterial switchBiometric;
+    private com.google.android.material.switchmaterial.SwitchMaterial switchNotifications;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +26,24 @@ public class SettingsActivity extends AppCompatActivity {
         switchBiometric = findViewById(R.id.switchBiometric);
         switchBiometric.setChecked(sessionManager.isBiometricEnabled());
 
+        switchNotifications = findViewById(R.id.switchNotifications);
+        switchNotifications.setChecked(sessionManager.isNotificationsEnabled());
+
         // Top Bar
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         
         // Settings Options
-        findViewById(R.id.btnNotifications).setOnClickListener(v -> 
-            Toast.makeText(this, "Notification Settings Clicked", Toast.LENGTH_SHORT).show());
+        findViewById(R.id.btnNotificationToggle).setOnClickListener(v -> 
+        {
+            boolean enabled = !sessionManager.isNotificationsEnabled();
+            sessionManager.setNotificationsEnabled(enabled);
+            switchNotifications.setChecked(enabled);
+            Toast.makeText(
+                    this,
+                    enabled ? "Notifications enabled" : "Notifications disabled",
+                    Toast.LENGTH_SHORT
+            ).show();
+        });
 
         findViewById(R.id.btnAccount).setOnClickListener(v -> 
             startActivity(new Intent(this, ProfileActivity.class)));
@@ -49,10 +62,10 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btnPrivacy).setOnClickListener(v -> 
-            Toast.makeText(this, "Privacy Settings Clicked", Toast.LENGTH_SHORT).show());
+            startActivity(new Intent(this, PrivacySecurityActivity.class)));
 
         findViewById(R.id.btnHelp).setOnClickListener(v -> 
-            startActivity(new Intent(this, SafetyTipsActivity.class)));
+            startActivity(new Intent(this, HelpSupportActivity.class)));
 
         findViewById(R.id.btnLogout).setOnClickListener(v -> {
             authViewModel.signOut();
