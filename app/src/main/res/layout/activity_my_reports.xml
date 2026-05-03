@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="History"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
@@ -130,7 +130,7 @@
                     android:layout_below="@id/status1"
                     android:layout_marginTop="8dp"
                     android:text="FLOODING"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -178,7 +178,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:text="×"
-                        android:textColor="@color/white"
+                        android:textColor="@color/text_primary"
                         android:textSize="24sp" />
 
                     <ImageView
@@ -231,7 +231,7 @@
                     android:layout_below="@id/status2"
                     android:layout_marginTop="8dp"
                     android:text="SPILLED LIQUID"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -279,7 +279,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:text="×"
-                        android:textColor="@color/white"
+                        android:textColor="@color/text_primary"
                         android:textSize="24sp" />
 
                     <ImageView
@@ -332,7 +332,7 @@
                     android:layout_below="@id/status3"
                     android:layout_marginTop="8dp"
                     android:text="TV WON'T OPEN"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -380,7 +380,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:text="×"
-                        android:textColor="@color/white"
+                        android:textColor="@color/text_primary"
                         android:textSize="24sp" />
 
                     <ImageView
@@ -433,7 +433,7 @@
                     android:layout_below="@id/status4"
                     android:layout_marginTop="8dp"
                     android:text="AIRCON MALFUNCTION"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -481,7 +481,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:text="×"
-                        android:textColor="@color/white"
+                        android:textColor="@color/text_primary"
                         android:textSize="24sp" />
 
                     <ImageView

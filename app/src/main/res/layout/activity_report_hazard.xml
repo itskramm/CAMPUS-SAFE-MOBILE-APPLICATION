@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Report Hazard"
-        android:textColor="@color/white"
+        android:textColor="@color/top_bar_text"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/topBar"
@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Submit with:"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -109,7 +109,7 @@
                         android:layout_weight="1"
                         android:layout_marginStart="8dp"
                         android:text="Email"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/text_primary" />
 
                     <ImageView
                         android:layout_width="16dp"
@@ -138,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="Google"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/text_primary" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -148,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Indoor Location:"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -234,7 +234,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="GPS Detected: Main Building, Floor 3, Room 305"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -299,7 +299,7 @@
                 android:background="@drawable/input_box_bg"
                 android:hint="Hazard Title"
                 android:paddingHorizontal="12dp"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textColorHint="@color/hint_gray"
                 android:textSize="14sp" />
 
@@ -312,7 +312,7 @@
                 android:gravity="top"
                 android:hint="Describe it..."
                 android:padding="12dp"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textColorHint="@color/hint_gray"
                 android:textSize="14sp" />
 
@@ -360,12 +360,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_home"
+                app:tint="@color/nav_icon_tint"
                 android:contentDescription="Home"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Home"
-                android:textColor="@color/white"
+                android:textColor="@color/nav_text_color"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -382,12 +383,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_reports"
+                app:tint="@color/nav_icon_tint"
                 android:contentDescription="Reports"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Reports"
-                android:textColor="@color/white"
+                android:textColor="@color/nav_text_color"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -404,13 +406,13 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/ic_add_circle"
-                app:tint="#FFFFFF"
+                app:tint="@color/nav_selected"
                 android:contentDescription="Add"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:textColor="#4285F4"
+                android:textColor="@color/nav_selected"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -427,12 +429,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_location"
+                app:tint="@color/nav_icon_tint"
                 android:contentDescription="Maps"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Maps"
-                android:textColor="@color/white"
+                android:textColor="@color/nav_text_color"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -449,12 +452,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_settings"
+                app:tint="@color/nav_icon_tint"
                 android:contentDescription="Settings"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Settings"
-                android:textColor="@color/white"
+                android:textColor="@color/nav_text_color"
                 android:textSize="10sp" />
         </LinearLayout>
 

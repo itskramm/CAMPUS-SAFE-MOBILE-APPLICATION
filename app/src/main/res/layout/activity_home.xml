@@ -127,7 +127,7 @@
                         android:layout_marginBottom="16dp"
                         android:fontFamily="casual"
                         android:text="Report hazards and stay safe on campus."
-                        android:textColor="@color/white"
+                        android:textColor="@color/top_bar_text"
                         android:textSize="18sp"
                         android:textStyle="bold" />
                 </FrameLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/splash_bg"
+    android:background="@color/bg_primary"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +20,7 @@
             android:src="@drawable/ic_arrow_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+            app:tint="@color/text_primary" />
 
         <TextView
             android:id="@+id/tvCreateAccountTitle"
@@ -29,7 +29,7 @@
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="Create Account"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
             android:inputType="textPersonName"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textColorHint="@color/hint_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
             android:inputType="textEmailAddress"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textColorHint="@color/hint_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,7 @@
             android:inputType="textPassword"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textColorHint="@color/hint_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +94,7 @@
             android:inputType="textPassword"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textColorHint="@color/hint_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +108,7 @@
             android:backgroundTint="@color/btn_gray"
             android:text="Sign Up"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textSize="18sp"
             android:textStyle="bold"
             app:cornerRadius="25dp"
@@ -136,7 +136,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="16dp"
             android:text="Already have an account? Log in"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

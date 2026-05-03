@@ -2,6 +2,7 @@ package com.example.campussafeapplication.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatDelegate
 
 class SessionManager(context: Context) {
     
@@ -47,9 +48,14 @@ class SessionManager(context: Context) {
     
     fun setThemeMode(mode: Int) {
         prefs.edit().putInt(KEY_THEME_MODE, mode).apply()
+        applyTheme(mode)
     }
     
-    fun getThemeMode(): Int = prefs.getInt(KEY_THEME_MODE, -1)
+    fun getThemeMode(): Int = prefs.getInt(KEY_THEME_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+
+    fun applyTheme(mode: Int) {
+        AppCompatDelegate.setDefaultNightMode(mode)
+    }
     
     fun clearSession() {
         prefs.edit().apply {

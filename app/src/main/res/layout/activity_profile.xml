@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="John Doe Reyes"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -85,7 +85,7 @@
                 android:background="@drawable/input_box_bg"
                 android:hint="Edit name"
                 android:paddingHorizontal="16dp"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textColorHint="@color/hint_gray" />
 
             <EditText
@@ -97,7 +97,7 @@
                 android:hint="Change Email"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="16dp"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textColorHint="@color/hint_gray" />
 
             <EditText
@@ -109,7 +109,7 @@
                 android:hint="Change Password"
                 android:inputType="textPassword"
                 android:paddingHorizontal="16dp"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textColorHint="@color/hint_gray" />
 
             <EditText
@@ -121,7 +121,7 @@
                 android:hint="Mobile Number"
                 android:inputType="phone"
                 android:paddingHorizontal="16dp"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textColorHint="@color/hint_gray" />
 
             <Button
@@ -133,7 +133,7 @@
                 android:backgroundTint="@color/btn_gray"
                 android:text="Save Changes"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 app:cornerRadius="20dp" />
 
         </LinearLayout>

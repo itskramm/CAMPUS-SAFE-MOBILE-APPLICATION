@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@color/splash_bg">
+    android:background="@color/bg_primary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="casual"
             android:text="@string/campus_safe"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textSize="40sp"
             android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@+id/etEmail"
@@ -50,7 +50,7 @@
             android:inputType="textEmailAddress"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textColorHint="@color/hint_gray"
             app:layout_constraintBottom_toTopOf="@+id/etPassword"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
             android:inputType="textPassword"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textColorHint="@color/hint_gray"
             app:layout_constraintBottom_toTopOf="@+id/tvForgotPassword"
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Forgot Password?"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/btnLogin"
             app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +96,7 @@
             android:backgroundTint="@color/btn_gray"
             android:text="Login"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:textSize="18sp"
             android:textStyle="bold"
             app:cornerRadius="25dp"
@@ -113,7 +113,7 @@
             android:backgroundTint="@color/btn_gray"
             android:text="Sign in with Biometrics"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             android:visibility="gone"
             app:cornerRadius="25dp"
             app:layout_constraintBottom_toTopOf="@+id/orLayout"
@@ -138,20 +138,20 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"
-                android:background="@color/white" />
+                android:background="@color/bg_primary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:text="or"
-                android:textColor="@color/white" />
+                android:textColor="@color/text_primary" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"
-                android:background="@color/white" />
+                android:background="@color/bg_primary" />
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -183,7 +183,7 @@
             android:backgroundTint="@color/btn_gray"
             android:text="Create Account"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/text_primary"
             app:cornerRadius="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

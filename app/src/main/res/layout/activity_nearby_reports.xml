@@ -75,7 +75,7 @@
                 android:text="Floor 1"
                 android:backgroundTint="@color/btn_gray"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textSize="12sp"
                 android:paddingHorizontal="16dp"
                 app:cornerRadius="8dp" />
@@ -195,7 +195,7 @@
                             android:paddingHorizontal="12dp"
                             android:paddingVertical="2dp"
                             android:text="Status: Pending"
-                            android:textColor="@color/white"
+                            android:textColor="@color/text_primary"
                             android:textSize="10sp" />
                     </LinearLayout>
                     <TextView
@@ -254,7 +254,7 @@
                             android:paddingHorizontal="12dp"
                             android:paddingVertical="2dp"
                             android:text="Status: Resolved"
-                            android:textColor="@color/white"
+                            android:textColor="@color/text_primary"
                             android:textSize="10sp" />
                     </LinearLayout>
                     <TextView
@@ -281,7 +281,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:src="@android:drawable/ic_menu_sort_by_size"
-                        app:tint="@color/white" />
+                        app:tint="@color/text_primary" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -314,7 +314,7 @@
                             android:paddingHorizontal="12dp"
                             android:paddingVertical="2dp"
                             android:text="Status: Pending"
-                            android:textColor="@color/white"
+                            android:textColor="@color/text_primary"
                             android:textSize="10sp" />
                     </LinearLayout>
                     <TextView
