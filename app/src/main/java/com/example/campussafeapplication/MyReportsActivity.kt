@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.campussafeapplication.models.HazardReport
 import com.example.campussafeapplication.utils.SessionManager
+import com.example.campussafeapplication.utils.SwipeNavigationHelper
 import com.example.campussafeapplication.viewmodels.HazardReportViewModel
 import kotlinx.coroutines.launch
 import java.time.Duration
@@ -44,6 +45,7 @@ class MyReportsActivity : AppCompatActivity() {
 
         bindViews()
         setupNavigation()
+        SwipeNavigationHelper.attach(this, SwipeNavigationHelper.Screen.REPORTS)
         setupActionButtons()
         observeReports()
         loadReports()

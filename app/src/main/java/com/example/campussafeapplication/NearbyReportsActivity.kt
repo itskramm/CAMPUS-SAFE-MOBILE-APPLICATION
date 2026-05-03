@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.campussafeapplication.models.HazardReport
+import com.example.campussafeapplication.utils.SwipeNavigationHelper
 import com.example.campussafeapplication.viewmodels.HazardReportViewModel
 import kotlinx.coroutines.launch
 import java.time.Duration
@@ -43,6 +44,7 @@ class NearbyReportsActivity : AppCompatActivity() {
 
         bindViews()
         setupNavigation()
+        SwipeNavigationHelper.attach(this, SwipeNavigationHelper.Screen.MAPS)
         setupFilters()
         setupActionButtons()
         observeReports()

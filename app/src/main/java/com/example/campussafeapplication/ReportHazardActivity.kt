@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.campussafeapplication.models.HazardReport
 import com.example.campussafeapplication.utils.SessionManager
+import com.example.campussafeapplication.utils.SwipeNavigationHelper
 import com.example.campussafeapplication.viewmodels.HazardReportViewModel
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.launch
@@ -96,6 +97,7 @@ class ReportHazardActivity : AppCompatActivity() {
 
         bindViews()
         setupNavigation()
+        SwipeNavigationHelper.attach(this, SwipeNavigationHelper.Screen.ADD)
         setupSpinners()
         setupButtons()
         observeReportState()

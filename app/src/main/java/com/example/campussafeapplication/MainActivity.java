@@ -1,12 +1,13 @@
 package com.example.campussafeapplication;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import com.example.campussafeapplication.utils.SessionManager;
+import com.example.campussafeapplication.utils.SwipeNavigationHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         bindCurrentUser();
 
         setupNavigation();
+        SwipeNavigationHelper.attach(this, SwipeNavigationHelper.Screen.HOME);
     }
 
 
@@ -52,11 +54,20 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.navMaps).setOnClickListener(v -> navigateTo(NearbyReportsActivity.class));
         findViewById(R.id.navSettings).setOnClickListener(v -> navigateTo(SettingsActivity.class));
 
-        //search button (subject for removal)
-        findViewById(R.id.btnSearch).setOnClickListener(v -> navigateTo(NearbyReportsActivity.class));
+        // top bar theme mode toggle
+        findViewById(R.id.btnThemeToggle).setOnClickListener(v -> toggleThemeMode());
 
         // home (bottom navigation bar)
         findViewById(R.id.navHome).setOnClickListener(v -> {});
+    }
+
+    private void toggleThemeMode() {
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        int newMode = currentNightMode == Configuration.UI_MODE_NIGHT_YES
+                ? AppCompatDelegate.MODE_NIGHT_NO
+                : AppCompatDelegate.MODE_NIGHT_YES;
+        sessionManager.setThemeMode(newMode);
+        AppCompatDelegate.setDefaultNightMode(newMode);
     }
 
     private void bindCurrentUser() {

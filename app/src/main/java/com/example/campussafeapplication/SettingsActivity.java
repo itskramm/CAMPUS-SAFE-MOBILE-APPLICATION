@@ -6,6 +6,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.campussafeapplication.utils.SessionManager;
+import com.example.campussafeapplication.utils.SwipeNavigationHelper;
 import com.example.campussafeapplication.viewmodels.AuthViewModel;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -82,5 +83,7 @@ public class SettingsActivity extends AppCompatActivity {
         findViewById(R.id.navSettings).setOnClickListener(v -> {
             // Already on Settings
         });
+
+        SwipeNavigationHelper.attach(this, SwipeNavigationHelper.Screen.SETTINGS);
     }
 }

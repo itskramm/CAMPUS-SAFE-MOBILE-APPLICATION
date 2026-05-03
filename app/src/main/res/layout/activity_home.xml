@@ -44,10 +44,11 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/btnSearch"
+                android:id="@+id/btnThemeToggle"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:src="@drawable/ic_search"
+                android:contentDescription="@string/toggle_theme"
+                android:src="@drawable/ic_theme_mode"
                 app:tint="@color/top_bar_text" />
         </LinearLayout>
     </RelativeLayout>
