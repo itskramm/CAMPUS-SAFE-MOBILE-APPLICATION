@@ -15,7 +15,7 @@ data class HazardReport(
     val description: String,
     val status: String = "Pending", // "Pending", "In Progress", "Resolved"
     @SerialName("hazard_type")
-    val hazardType: String = "General",
+    val hazardType: String = "Other",
     val location: String? = null,
     val latitude: Double? = 0.0,
     val longitude: Double? = 0.0,

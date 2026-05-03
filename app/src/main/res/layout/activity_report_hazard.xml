@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_primary">
+    android:background="@color/bg_primary"
+    android:fitsSystemWindows="true">
 
     <!-- Top Bar Background -->
     <View
@@ -165,7 +166,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:background="@android:color/transparent"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark"
                     android:spinnerMode="dropdown"
@@ -191,7 +192,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_primary"
                     android:background="@android:color/transparent"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark"
                     android:spinnerMode="dropdown"
@@ -211,7 +212,7 @@
                 android:background="@drawable/input_box_bg"
                 android:hint="Room 305"
                 android:paddingHorizontal="12dp"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 android:textColorHint="@color/hint_gray"
                 android:textSize="14sp" />
 
@@ -271,7 +272,7 @@
                         android:layout_height="36dp"
                         android:text="Take Photo"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
+                        android:textColor="@color/text_primary"
                         android:textSize="12sp"
                         app:cornerRadius="20dp"
                         android:backgroundTint="@color/btn_gray"/>
@@ -284,7 +285,7 @@
                         android:backgroundTint="@color/btn_gray"
                         android:text="Attach Photo"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
+                        android:textColor="@color/text_primary"
                         android:textSize="12sp"
                         app:cornerRadius="20dp" />
                 </LinearLayout>
@@ -326,7 +327,7 @@
                 android:backgroundTint="@color/btn_gray"
                 android:text="Submit Report"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
+                android:textColor="@color/text_primary"
                 app:cornerRadius="20dp" />
 
         </LinearLayout>

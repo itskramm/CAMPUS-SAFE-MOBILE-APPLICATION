@@ -19,11 +19,7 @@ public class Splash_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SessionManager sessionManager = new SessionManager(this);
-        
-        int savedMode = sessionManager.getThemeMode();
-        if (savedMode != -1) {
-            AppCompatDelegate.setDefaultNightMode(savedMode);
-        }
+        AppCompatDelegate.setDefaultNightMode(sessionManager.getThemeMode());
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);

@@ -1,11 +1,9 @@
 package com.example.campussafeapplication;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import com.example.campussafeapplication.utils.SessionManager;
 import com.example.campussafeapplication.utils.SwipeNavigationHelper;
 
@@ -62,11 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void toggleThemeMode() {
-        int currentMode = sessionManager.getThemeMode();
-        int newMode = (currentMode == AppCompatDelegate.MODE_NIGHT_YES)
-                ? AppCompatDelegate.MODE_NIGHT_NO
-                : AppCompatDelegate.MODE_NIGHT_YES;
-        sessionManager.setThemeMode(newMode);
+        sessionManager.toggleThemeMode(this);
     }
 
     private void bindCurrentUser() {

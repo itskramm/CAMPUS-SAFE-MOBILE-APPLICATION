@@ -19,7 +19,11 @@ CREATE TABLE IF NOT EXISTS public.users (
 CREATE TABLE IF NOT EXISTS public.hazard_reports (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES public.users(id) ON DELETE CASCADE,
-  hazard_type TEXT NOT NULL CHECK (hazard_type IN ('Fire', 'Flood', 'Structural', 'Medical', 'Security', 'Other')),
+  title TEXT NOT NULL,
+  building TEXT NOT NULL,
+  floor TEXT NOT NULL,
+  room TEXT NOT NULL,
+  hazard_type TEXT NOT NULL DEFAULT 'Other' CHECK (hazard_type IN ('Fire', 'Flood', 'Structural', 'Medical', 'Security', 'Other')),
   description TEXT NOT NULL,
   location TEXT NOT NULL,
   latitude DOUBLE PRECISION NOT NULL,
@@ -30,6 +34,12 @@ CREATE TABLE IF NOT EXISTS public.hazard_reports (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
+
+-- Add missing hazard report columns if the table already exists
+ALTER TABLE public.hazard_reports ADD COLUMN IF NOT EXISTS title TEXT;
+ALTER TABLE public.hazard_reports ADD COLUMN IF NOT EXISTS building TEXT;
+ALTER TABLE public.hazard_reports ADD COLUMN IF NOT EXISTS floor TEXT;
+ALTER TABLE public.hazard_reports ADD COLUMN IF NOT EXISTS room TEXT;
 
 -- Safety Tips table
 CREATE TABLE IF NOT EXISTS public.safety_tips (

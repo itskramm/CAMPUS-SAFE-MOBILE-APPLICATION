@@ -3,7 +3,7 @@
 ## ✅ Setup Complete
 
 Your Supabase integration is now configured with:
-- **URL**: `https://uxafytyqohzjqcbbmyir.supabase.co`
+ - **URL**: `https://uxafytqyohzjqcbbmyir.supabase.co`
 - **Anon Key**: Configured in `SupabaseClient.kt`
 
 ## 📁 Project Structure
@@ -49,6 +49,10 @@ CREATE TABLE users (
 CREATE TABLE hazard_reports (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  building TEXT NOT NULL,
+  floor TEXT NOT NULL,
+  room TEXT NOT NULL,
   hazard_type TEXT NOT NULL,
   description TEXT NOT NULL,
   location TEXT NOT NULL,
