@@ -364,13 +364,13 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_settings"
-                app:tint="@color/nav_selected"
+                app:tint="@color/nav_icon_tint"
                 android:contentDescription="Settings"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Settings"
-                android:textColor="@color/nav_selected"
+                android:textColor="@color/nav_text_color"
                 android:textSize="10sp" />
         </LinearLayout>
 

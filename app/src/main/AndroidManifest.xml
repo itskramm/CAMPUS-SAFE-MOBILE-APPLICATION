@@ -28,7 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampusSafeApplication">
         <activity
-            android:name=".Splash_Activity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.campussafeapplication.models.SafetyTip
+import com.example.campussafeapplication.utils.SwipeNavigationHelper
 import com.example.campussafeapplication.viewmodels.SafetyTipViewModel
 import kotlinx.coroutines.launch
 
@@ -48,6 +49,7 @@ class SafetyTipsActivity : AppCompatActivity() {
         setupNavigation()
         observeTips()
         tipViewModel.getAllSafetyTips()
+        SwipeNavigationHelper.attach(this, SwipeNavigationHelper.Screen.SAFETY_TIPS)
     }
 
     private fun setupDropdowns() {
