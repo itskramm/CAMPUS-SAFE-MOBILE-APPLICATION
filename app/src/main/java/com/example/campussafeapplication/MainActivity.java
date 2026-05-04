@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void toggleThemeMode() {
-        int currentMode = sessionManager.getThemeMode();
-        int newMode = (currentMode == AppCompatDelegate.MODE_NIGHT_YES)
-                ? AppCompatDelegate.MODE_NIGHT_NO
-                : AppCompatDelegate.MODE_NIGHT_YES;
+        // Resolve the currently active (resolved) UI night mode from resources
+        int uiMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        boolean isCurrentlyNight = (uiMode == Configuration.UI_MODE_NIGHT_YES);
+        int newMode = isCurrentlyNight ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES;
         sessionManager.setThemeMode(newMode);
     }
 
