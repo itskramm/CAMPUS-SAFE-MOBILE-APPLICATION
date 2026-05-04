@@ -51,9 +51,9 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Notifications -->
+            <!-- Notifications Toggle -->
             <LinearLayout
-                android:id="@+id/btnNotifications"
+                android:id="@+id/btnNotificationToggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -84,15 +84,17 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Manage notification preferences"
+                        android:text="Turn on/off notifications for updates"
                         android:textColor="@color/text_secondary"
                         android:textSize="12sp" />
                 </LinearLayout>
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_chevron_right" />
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchNotifications"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false" />
             </LinearLayout>
 
             <!-- Account -->

@@ -113,9 +113,6 @@ class NearbyReportsActivity : AppCompatActivity() {
             activeFilter = FloorFilter.FLOOR_2
             applyFilter()
         }
-        findViewById<Button>(R.id.btnMapView).setOnClickListener {
-            Toast.makeText(this, "Map preview is shown above.", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun setupActionButtons() {
